@@ -34,3 +34,12 @@ local account, and added it to the Administrators group, then correlated each ac
 4726 account deleted, 4624 logon, 4732 group membership change). On the Linux side, I generated a failed SSH login against a fake user 
 followed by a successful login, ran reconnaissance and exfiltration-style commands (cat /etc/passwd > /tmp/loot.txt), and traced the 
 resulting session ID through login, command execution, and logoff.
+
+Updated SOC lab using Wazuh:
+To generate realistic telemetry, I played the role of a threat actor performing common post-compromise 
+actions against the Windows endpoint:
+  -Enabled the built-in Guest account and changed its password
+  -Created a new local user and added it to the Administrators group
+  -Ran discovery commands (whoami, net user, net group, systeminfo) to enumerate the system and its users
+  -Deleted a file to simulate anti-forensics / cleanup behavior
+Separately, ran a sustained SSH brute-force attack against the Ubuntu endpoint to simulate an external credential-access attempt.
